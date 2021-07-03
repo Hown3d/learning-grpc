@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-client-deployment
+spec:
+  selector:
+    matchLabels:
+      grpc: client
+  template:
+    metadata:
+      name: grpc-client
+      labels:
+        grpc: client
+    spec:
+      containers:
+        - name: grpc-client
+          image: grpc-client
+          env:
+            - name: SERVER_PORT
+              value: "9000"
+            - name: SERVER_ADDR
+              value: "grpc-server"
